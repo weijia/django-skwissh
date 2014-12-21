@@ -30,7 +30,7 @@ def getMeasures():
             env.passwords = dict([("%s@%s" % (server.username, server.ip), server.password) for server in servers])
             with hide('everything'):
                 execute(launch_command, now)
-    except:
+    except Exception, e:
         total_time = datetime.datetime.utcnow().replace(tzinfo=utc) - timestamp
         duration = float(int((total_time.seconds * 1000000) + total_time.microseconds) / 1000000.0)
         CronLog.objects.create(timestamp=timestamp, action="sensors", server=None, success=False, duration=duration, message=traceback.format_exc())
@@ -63,7 +63,7 @@ def launch_command(timestamp):
             probes = server.probes.all()
             for probe in probes:
                 sensor_success, sensor_messages = storeValue(server, probe, timestamp, server_up)
-                messages += sensor_messages
+                messages += unicode(sensor_messages)
                 success = success and sensor_success
         else:
             messages.append("Server '%s' is unreachable." % server.hostname)
@@ -78,7 +78,8 @@ def launch_command(timestamp):
         server.save(force_update=True)
         total_time = datetime.datetime.utcnow().replace(tzinfo=utc) - start
         duration = float(int((total_time.seconds * 1000000) + total_time.microseconds) / 1000000.0)
-        CronLog.objects.create(timestamp=timestamp, action="sensors", server=server, success=success, duration=duration, message="\n".join(messages))
+        CronLog.objects.create(timestamp=timestamp, action="sensors", server=server, success=success,
+                               duration=duration, message=u"\n".join(messages))
 
 
 def storeValue(server, probe, timestamp, server_up):

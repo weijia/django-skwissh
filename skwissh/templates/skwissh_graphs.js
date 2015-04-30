@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load url from future %}
 <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="http://cdn.jsdelivr.net/jqplot/1.0.2/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="http://cdn.jsdelivr.net/jqplot/1.0.2/jquery.jqplot.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jqplot/1.0.2/jquery.jqplot.min.css" />

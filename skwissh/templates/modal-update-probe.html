@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load url from future %}
 <form method="post" action="{% url 'update-probe'  %}">
 	{{ probe_formset.management_form }}
 	{% for form in probe_formset %}

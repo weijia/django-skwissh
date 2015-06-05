@@ -15,4 +15,5 @@ def patch_settings():
     Patches default project settings LOGIN_URL.
     Don't know if it's the best way to do it... but it works...
     """
-    settings.LOGIN_URL = reverse("skwissh.views.login_skwissh")
+    # settings.LOGIN_URL = reverse("skwissh.views.login_skwissh")
+    pass

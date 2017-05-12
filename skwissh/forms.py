@@ -12,6 +12,7 @@ class ProbeForm(ModelForm):
     class Meta:
         model = Probe
         widgets = {"use_sudo": forms.RadioSelect}
+        exclude = []
 
 
 class ServerForm(ModelForm):

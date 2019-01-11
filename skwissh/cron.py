@@ -63,7 +63,7 @@ def launch_command(timestamp):
             probes = server.probes.all()
             for probe in probes:
                 sensor_success, sensor_messages = storeValue(server, probe, timestamp, server_up)
-                messages += unicode(sensor_messages)
+                messages.append(unicode(sensor_messages))
                 success = success and sensor_success
         else:
             messages.append("Server '%s' is unreachable." % server.hostname)
